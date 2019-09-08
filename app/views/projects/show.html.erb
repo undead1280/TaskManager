@@ -3,3 +3,23 @@
 <%= link_to 'Home', home_path, :class => 'btn btn-outline-primary' %>
 <%= link_to 'Delete', project_path(@project), method: :delete, data: {confirm: "Are you sure?"},
  :class => 'btn btn-danger' %>
+ <% @project.tasks.each do |task| %>
+          <ul>
+            <li class="over-flow">
+
+              <p class="task-list-text display-inline"><%= task.name %></p>
+
+
+              <div style="float:right;">
+                <p class="task-list-text display-inline"><%= check_box_tag 'completed?', 1, task.status, disabled: true, id: "task_complete" %></p>
+              </div>
+
+              <div role="group" aria-label="...">
+                <%= button_to "Edit", edit_project_task_path(@project,task), method: 'get', class: "button-small btn light-green"%>
+                <%= button_to "Delete", project_task_path(@project,task), method: 'delete', class: "button-small btn"%>
+              </div>
+
+            </li>
+          </ul>
+        <% end %>
+        <%= link_to "New Task", new_project_task_path(@project), method: 'get', class: "text-center form-control btn-main margin-top-25"%>
