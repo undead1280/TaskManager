@@ -8,8 +8,7 @@
             <li class="over-flow">
 
               <%= task.name %>
-
-
+              <%= task.status %>
               <div style="float:right;">
                 <%= check_box_tag 'completed?', 1, task.status, disabled: true, id: "task_complete" %>
               </div>
@@ -21,5 +20,5 @@
 
             </li>
           </ul>
-        <% end %>
+<% end %>
         <%= link_to "New Task", new_project_task_path(@project), method: 'get', class: "text-center form-control btn-main margin-top-25"%>

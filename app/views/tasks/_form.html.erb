@@ -1,5 +1,7 @@
 <%= form_for ([@project, @task]) do |f| %>
-  <%= f.text_field :name, placeholder: "Name", class: "form-control" %>
-  <p>Done?   </span><%= f.check_box :status %></p>
+  <p>done</p>
+  <%= f.text_field(:status, {:type => 'radio', :value => 'done'}) %>
+  <p>in process</p>
+  <%= f.text_field(:status, {:type => 'radio', :value => 'in process'}) %>
   <%= f.submit  %>
 <% end %>
