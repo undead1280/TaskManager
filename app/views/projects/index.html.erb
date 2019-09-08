@@ -1,0 +1,4 @@
+<% @project.each do |project| %>
+  <%= 'Project: '%>: <%= project.name  %>
+  <%= link_to 'Details', project_path(project), :class => 'btn btn-outline-primary' %><br>
+<% end %>

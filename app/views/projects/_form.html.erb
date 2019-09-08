@@ -1,0 +1,10 @@
+<%= form_for :project, url: projects_path do |f| %>
+  <p>
+    <h2><%= 'Project name: '%>:</h2>
+    <br>
+    <%= f.text_field(:name, {:class => 'form-control'}) %>
+  </p>
+<p>
+<%= f.submit ({:value => 'Save', :class => 'btn btn-success'})%>
+</p>
+<%end%>

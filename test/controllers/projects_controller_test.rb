@@ -1,8 +1,13 @@
 require "test_helper"
 
 class ProjectsControllerTest < ActionDispatch::IntegrationTest
-  test "should get home" do
-    get "/projects/about"
+  test "testing form to create new project" do
+    get "/projects/new"
+    assert_response :success
+  end
+
+  test "testing form to edit project" do
+    get "/projects"
     assert_response :success
   end
 end

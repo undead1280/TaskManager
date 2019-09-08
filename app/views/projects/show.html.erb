@@ -1,0 +1,5 @@
+<%= 'Project: '%>:<%= @project.name %>
+<%= link_to 'Edit', edit_project_path(@project), :class => 'btn btn-outline-primary' %>
+<%= link_to 'Home', home_path, :class => 'btn btn-outline-primary' %>
+<%= link_to 'Delete', project_path(@project), method: :delete, data: {confirm: "Are you sure?"},
+ :class => 'btn btn-danger' %>
