@@ -1,24 +1,25 @@
-# README
+# SQL task
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+1.  get all statuses, not repeating, alphabetically ordered
 
-Things you may want to cover:
+SELECT DISTINCT status FROM tasks ORDER BY status
 
-* Ruby version
+2.  get the count of all tasks in each project, order by tasks count descending
 
-* System dependencies
+SELECT projects.id, COUNT(tasks) AS task_count FROM tasks RIGHT JOIN projects ON tasks.project_id = projects.id
+GROUP BY projects.id ORDER BY task_count DESC
 
-* Configuration
+3.  get the count of all tasks in each project, order by projects names
 
-* Database creation
+SELECT projects.name, COUNT(tasks) AS task_count FROM tasks RIGHT JOIN projects ON task.project_id=projects.id
+GROUP BY projects.id ORDER BY task_count
 
-* Database initialization
+4. get the tasks for all projects having the name beginning with “N” letter
 
-* How to run the test suite
+SELECT projects.name, task.name FROM tasks INNER JOIN rpojects ON tasks.project_id=projects.id WHERE tasks.name LIKE 'N%'
 
-* Services (job queues, cache servers, search engines, etc.)
+5. get the list of project names having more than 10 tasks in status ‘completed’. Order by 
+project_id
 
-* Deployment instructions
-
-* ...
+SELECt  projects.name FROM tasks RIGTH JOIN projects ON tasks.projects_id = projects.id WHERE tasks.status = 'completed'
+GROUP BY projects.id HAVING COUNT(tasks)>10 ORDER BY projects.id
