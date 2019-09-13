@@ -3,6 +3,7 @@
     <h2><%= 'Project name: '%>:</h2>
     <br>
     <%= f.text_field(:name, {:class => 'form-control'}) %>
+    <%= f.date_field(:dead_line, {:class => 'form-control'}) %>
   </p>
   <%= f.hidden_field :user_id, :value => @project.user_id%>
   <p>
