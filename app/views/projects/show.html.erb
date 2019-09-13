@@ -1,8 +1,11 @@
 <br><%= 'Project: '%>:<%= @project.name %> Count of tasks: <%= @project.tasks.count %><br>
-<%= link_to 'Edit', edit_project_path(@project), :class => 'btn btn-outline-primary' %>
+<%= 'Author_id: '%>:<%= @project.user_id %>
 <%= link_to 'Home', home_path, :class => 'btn btn-outline-primary' %>
+<% if current_user.id == @project.user_id %>
+<%= link_to 'Edit', edit_project_path(@project), :class => 'btn btn-outline-primary' %>
 <%= link_to 'Delete', project_path(@project), method: :delete, data: {confirm: "Are you sure?"},
  :class => 'btn btn-danger' %>
+ <% end %>
  <% @project.tasks.sort_by(&:name).each do |task| %>
  <br><hr>
           <ul>
@@ -10,11 +13,14 @@
               <%= task.name %>
               <%= task.status %>
               <div role="group" aria-label="...">
+              <% if current_user.id == @project.user_id %>
                 <%= button_to "Edit", edit_project_task_path(@project,task), method: 'get', class: "button-small btn light-green"%>
                 <%= button_to "Delete", project_task_path(@project,task), method: 'delete', class: "button-small btn"%>
+                 <% end %>
               </div>
             </li>
           </ul>
 <% end %>
+<% if current_user.id == @project.user_id %>
 <%= link_to "New Task", new_project_task_path(@project), method: 'get', class: "text-center form-control btn-main margin-top-25"%>
-       
+<% end %>

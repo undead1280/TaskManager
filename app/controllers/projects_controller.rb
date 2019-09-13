@@ -13,6 +13,7 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
+    @project.user_id = current_user.id
     if (@project.save)
       redirect_to @project
     else
@@ -26,7 +27,7 @@ class ProjectsController < ApplicationController
 
   def update
     @project = Project.find(params[:id])
-    if (@project.update(project_params))
+    if (@project.update(project_params) && current_user.id == @project.user_id)
       redirect_to @project
     else
       render "edit"
@@ -40,6 +41,6 @@ class ProjectsController < ApplicationController
   end
 
   private def project_params
-    params.require(:project).permit(:name)
+    params.require(:project).permit(:name, :user_id)
   end
 end
