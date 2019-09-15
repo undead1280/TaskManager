@@ -1,27 +1,27 @@
-<br><%= 'Project: '%>:<%= @project.name %> Count of tasks: <%= @project.tasks.count %><br>
-<%= 'Author_id: '%>:<%= @project.user_id %>
-<%= 'Dead_line: '%>:<%= @project.dead_line %>
-<%= link_to 'Home', home_path, :class => 'btn btn-outline-primary' %>
+<br><h4><%= 'Project: '%>
+  <%= @project.name %></h4>
+<h4>Count of tasks: 
+  <%= @project.tasks.count %></h4>
+<h4><%= 'Author_id: '%>
+  <%= @project.user_id %></h4>
+<h4><%= 'Dead_line: '%>
+  <%= @project.dead_line.strftime("%Y-%m-%d") %></h4>
 <% if current_user.id == @project.user_id %>
 <%= link_to 'Edit', edit_project_path(@project), :class => 'btn btn-outline-primary' %>
 <%= link_to 'Delete', project_path(@project), method: :delete, data: {confirm: "Are you sure?"},
  :class => 'btn btn-danger' %>
+<%= link_to "New Task", new_project_task_path(@project), method: 'get', class: "btn btn-warning"%>
  <% end %>
  <% @project.tasks.sort_by(&:name).each do |task| %>
  <br><hr>
-          <ul>
-            <li class="over-flow">
-              <%= task.name %>
-              <%= task.status %>
-              <div role="group" aria-label="...">
-              <% if current_user.id == @project.user_id %>
-                <%= button_to "Edit", edit_project_task_path(@project,task), method: 'get', class: "button-small btn light-green"%>
-                <%= button_to "Delete", project_task_path(@project,task), method: 'delete', class: "button-small btn"%>
-                 <% end %>
-              </div>
-            </li>
-          </ul>
-<% end %>
-<% if current_user.id == @project.user_id %>
-<%= link_to "New Task", new_project_task_path(@project), method: 'get', class: "text-center form-control btn-main margin-top-25"%>
+    <ul>
+      <li class="over-flow">
+        <h5>Task: <%= task.name %></h5>
+        <h5>Status: <%= task.status %></h5>
+        <% if current_user.id == @project.user_id %>
+          <%= link_to "Edit", edit_project_task_path(@project,task), method: 'get', class: "btn btn-warning"%>
+          <%= link_to "Delete", project_task_path(@project,task), method: 'delete', class: "btn btn-warning"%>
+        <% end %>
+      </li>
+    </ul>
 <% end %>

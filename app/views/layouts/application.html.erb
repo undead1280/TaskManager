@@ -11,12 +11,29 @@
   </head>
   <body>
     <% if user_signed_in?%>
-      <%= link_to 'All projects',home_path, :class => 'btn btn-outline-primary' %>
-      <%= link_to 'New', new_project_path, :class => 'btn btn-outline-primary' %>
-      <%= link_to 'Log out', destroy_user_session_path, method: :delete , :class => 'btn btn-outline-primary' %>
+      <ul class="nav">
+        <li class="nav-item">
+          <%= link_to 'All projects',home_path, :class => 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'New', new_project_path, :class => 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Log out', destroy_user_session_path, method: :delete , :class => 'nav-link' %>
+        </li>
+         <li class="nav-item">
+          <label class='nav-link'>My id: <%= current_user.id %></label>
+        </li>
+      </ul>
     <% else %>
-      <%= link_to 'Sign in', new_user_session_path, :class => 'btn btn-outline-primary' %>
-      <%= link_to 'Sign up', new_user_registration_path, :class => 'btn btn-outline-primary' %>
+    <ul class="nav">
+        <li class="nav-item">
+          <%= link_to 'Sign in', new_user_session_path, :class => 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Sign up', new_user_registration_path, :class => 'nav-link' %>
+        </li>
+      </ul>
     <%end%>
     <%= yield %>
     <p class="notice"><%= notice %></p>

@@ -1,5 +1,10 @@
-<br><% @project.each do |project| %><hr>
-  <%= 'Project: '%>: <%= project.name  %>
-  <%= link_to 'Details', project_path(project), :class => 'btn btn-outline-primary' %><br>
-<% end %>
-
+<ul class="list-group">
+  <li class="list-group-item">
+    <% @project.each do |project| %>
+      <h4><%= 'Project name: '%></h4>
+      <h5><%= project.name  %></h5>
+      <h5>Author_id: <%= project.user_id  %></h5>
+      <%= link_to 'Details', project_path(project),:id => 'but', :class => 'btn btn-outline-primary' %><br><hr>
+    <% end %>
+  </li>
+</ul>
